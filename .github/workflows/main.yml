@@ -9,10 +9,10 @@ jobs:
     name: Sync master with upstream latest
 
     steps:
-    - name: Checkout master
+    - name: Checkout main
       uses: actions/checkout@v2
       with:
-        ref: master
+        ref: main
         
     - name: Pull upstream changes
       id: sync
