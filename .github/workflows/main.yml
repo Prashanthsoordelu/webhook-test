@@ -1,0 +1,26 @@
+on:
+  schedule:
+    - cron:  '5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  sync_with_upstream:
+    runs-on: ubuntu-latest
+    name: Sync master with upstream latest
+
+    steps:
+    - name: Checkout master
+      uses: actions/checkout@v2
+      with:
+        ref: master
+        
+    - name: Pull upstream changes
+      id: sync
+      uses: aormsby/Fork-Sync-With-Upstream-action@v2.2
+      with:
+        upstream_repository: pavanvora/webhook-test
+        upstream_branch: main
+        target_branch: main
+
+    - name: Timestamp
+      run: date
